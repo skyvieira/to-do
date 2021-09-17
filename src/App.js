@@ -14,9 +14,9 @@ const Container = styled.main`
 `;
 
 const Wrapper = styled.main`
-  padding: 3rem;
+  padding: 0 1rem;
   width: 50%;
-  height: 70%;
+  height: 90%;
   border: 30px solid #333;
   background: #eee;
 `;

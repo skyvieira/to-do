@@ -1,20 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from './styles.js'
 
 export default function Main() {
+  
+  let [ task, setTask ] = useState('');
+  let [ taskList, setTaskList ] = useState([]);
+
+  const handleChange = (e) => {
+    setTask(task = e.target.value)
+  }
+
+  const handleAdd = (e) => {
+    if (task.length > 0) {
+      setTaskList(taskList = taskList.concat(task))
+      setTask(task = '')
+    }
+    e.preventDefault()
+  }
+
   return (
     <S.Container>
-      <S.InputBox>
-        <S.Input type="text" />
+      <S.InputBox 
+        onChange={(e) => handleChange(e)} 
+        onSubmit={(e) => handleAdd(e)}
+      >
+        <S.Input 
+          type="text"
+          value={task}
+        />
       </S.InputBox>
 
       <S.List>
         <S.Text>tarefas</S.Text>
 
-        <S.Task>
-          Cough furball into food bowl then scratch owner for a new one eat and than sleep on your face meow to be let out making sure that fluff gets into the owner's eyes and kitty time or lick human with sandpaper tongue
-          <S.Check type="checkbox" />
-        </S.Task>
+        { taskList.map((task, i) => (
+          <S.Task key={i}>
+            {task}
+            <S.Check type="checkbox" />
+          </S.Task>
+        ))}
+
       </S.List>
     </S.Container>
   )
