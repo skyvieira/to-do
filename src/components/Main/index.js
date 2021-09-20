@@ -7,15 +7,19 @@ export default function Main() {
   let [ taskList, setTaskList ] = useState([]);
 
   const handleChange = (e) => {
-    setTask(task = e.target.value)
+    setTask(e.target.value)
   }
 
   const handleAdd = (e) => {
     if (task.length > 0) {
-      setTaskList(taskList = taskList.concat(task))
+      setTaskList([task, ...taskList])
       setTask(task = '')
     }
     e.preventDefault()
+  }
+
+  const handleDelete = (e, i) => {
+    setTaskList(taskList.filter((task, index) => index !== i))
   }
 
   return (
@@ -27,6 +31,7 @@ export default function Main() {
         <S.Input 
           type="text"
           value={task}
+          placeholder="O que precisa ser feito?"
         />
       </S.InputBox>
 
@@ -36,7 +41,10 @@ export default function Main() {
         { taskList.map((task, i) => (
           <S.Task key={i}>
             {task}
-            <S.Check type="checkbox" />
+            <S.TaskBox>
+              <S.CheckBtn type="checkbox" />
+              <S.RemoveBtn onClick={(e) => handleDelete(e, i)}>X</S.RemoveBtn>
+            </S.TaskBox>
           </S.Task>
         ))}
 
