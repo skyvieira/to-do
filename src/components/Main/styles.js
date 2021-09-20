@@ -34,6 +34,7 @@ export const List = styled.ul`
 
 export const Task = styled.li`
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
   margin: .5rem 0;
   padding-bottom: 3px;
@@ -41,7 +42,15 @@ export const Task = styled.li`
   border-bottom: 3px dotted #aaa;
 `;
 
-export const Check = styled.input`
+export const TaskBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CheckBtn = styled.input`
   min-width: 1.3rem;
   min-height: 1.3rem;
 `;
+
+export const RemoveBtn = styled.button``;
